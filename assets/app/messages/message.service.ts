@@ -17,7 +17,7 @@ export class MessageService {
     const body = JSON.stringify(message);
     const headers = new Headers({'Content-Type': 'application/json'});
     const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-    return this.http.post('http://protikmessengerapp.us-east-2.elasticbeanstalk.com/message' + token, body, { headers: headers })
+    return this.http.post('35.198.216.217:3000/message' + token, body, { headers: headers })
       .map((response: Response) => {
         const result = response.json();
         const message = new Message(result.obj.content,
@@ -36,7 +36,7 @@ export class MessageService {
 
 
   getMessages() {
-    return this.http.get('http://protikmessengerapp.us-east-2.elasticbeanstalk.com/message')
+    return this.http.get('35.198.216.217:3000/message')
         .map((response: Response) => {
           const messages = response.json().obj;
           let transformedMessages: Message[] = [];
@@ -63,7 +63,7 @@ export class MessageService {
     const body = JSON.stringify(message);
     const headers = new Headers({'Content-Type': 'application/json' });
     const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-    return this.http.patch('http://protikmessengerapp.us-east-2.elasticbeanstalk.com/message/' + message.messageId + token, body, { headers: headers })
+    return this.http.patch('35.198.216.217:3000/message/' + message.messageId + token, body, { headers: headers })
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         this.errorService.handleError(error.json());
@@ -74,7 +74,7 @@ export class MessageService {
   deleteMessage(message: Message) {
     this.messages.splice(this.messages.indexOf(message), 1);
     const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-    return this.http.delete('http://protikmessengerapp.us-east-2.elasticbeanstalk.com/message/' + message.messageId + token)
+    return this.http.delete('35.198.216.217:3000/message/' + message.messageId + token)
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         this.errorService.handleError(error.json());
