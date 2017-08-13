@@ -11,7 +11,7 @@ var messageRoutes = require('./routes/messages');
 var userRoutes = require('./routes/user');
 
 var app = express();
-mongoose.connect('protikdas:messengerDB@ds159180.mlab.com:59180/protik_messenger_app');
+mongoose.connect('localhost:27017:/node-angular');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
